@@ -7,8 +7,8 @@ CODING CHALLENGE de hackerrank
 ## clona el repositorio
 realiza esto con git
 
-## Actualzar composer
-Ejecutar: composer update
+## composer
+Ejecutar: composer install
 
 ## configuracion de archivo de base de datos
 Abre el .env.example y edita esta línea:
@@ -31,3 +31,17 @@ http://127.0.0.1/cube-summation/public
 
 Si sabes cómo usar Apache, simplemente configúralo. De lo contrario, puede escribir:
 php artisan serve
+
+Ejemplo
+--------
+
+
+    Tests: 2
+	N Matrix: 4
+	N Comandos: 5
+
+	UPDATE 2 2 2 4
+	QUERY 1 1 1 3 3 3
+	UPDATE 1 1 1 23
+	QUERY 2 2 2 4 4 4
+	QUERY 1 1 1 3 3 3
