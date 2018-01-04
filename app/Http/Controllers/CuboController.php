@@ -39,7 +39,6 @@ class CuboController extends Controller
         ]);
 
         $matriz = $datos->getMatriz();
-        return response()->json(['error' => $matriz], 500);
         if (!$matriz) {
             return response()->json(['error' => 'La matriz no ha sido configurada'], 500);
         }
@@ -57,7 +56,18 @@ class CuboController extends Controller
         $matriz->actualizarValor($input['x'] - 1, $input['y'] - 1, $input['z'] - 1, $input['value']);
 
         return response()->json(['success' => true]);
+    }
+    
+    private function comprobarTests($matriz){
+        $datos = new Datos();
 
+        if ($datos->getAcciones() >= $matriz->getNumeroComandos()) {
+            $datos->setMatriz(null);
+            return false;
+        } else {
+           $datos->setAcciones($datos->getAcciones() + 1);
+        }
+        return true;
     }
 
 }
