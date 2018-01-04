@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CuboController@index');
+
+Route::post('/configurar', 'CuboController@configurar');
+
+Route::post('/actualizar', 'CuboController@actualizar');
+
+Route::post('/consultar', 'CuboController@consultar');
