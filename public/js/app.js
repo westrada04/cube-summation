@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-
+    
 	var app = angular.module('myApp',[]);
 	app.controller('cuboController', cuboController);
 
@@ -39,11 +39,9 @@
 
             $.post("/cube-summation/public/configurar",request)
             	.then(function(data) {
-                    console.log('data', data);
-                    alert("Configurdo Exitosamente");
+                    alert("Configurado Exitosamente");
             	}, function(error){
-                    console.log('error', error);
-            		processErrorMessages(error);
+            		console.log('error', error);
             });
     	}
 
