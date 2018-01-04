@@ -7,10 +7,10 @@ CODING CHALLENGE de hackerrank
 ## clona el repositorio
 realiza esto con git
 
-##Actualzar composer
+## Actualzar composer
 Ejecutar: composer update
 
-##configuracion de archivo de base de datos
+## configuracion de archivo de base de datos
 Abre el .env.example y edita esta línea:
 
 DB_CONNECTION=mysql
@@ -22,7 +22,7 @@ DB_PASSWORD=your_password
 
 Después de eso , guárdalo como .envarchivo. ¡Esto es importante!
 
-##configuracion de clave
+## configuracion de clave
 php artisan key:generate
 
 ## ejecute el sitio web
