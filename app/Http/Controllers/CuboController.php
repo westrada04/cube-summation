@@ -69,5 +69,36 @@ class CuboController extends Controller
         }
         return true;
     }
+    
+     public function consultar(Request $request){
+        $datos = new Datos();
+
+        $this->validate($request, [
+            'x1' => 'required',
+            'x2' => 'required',
+            'y1' => 'required',
+            'y2' => 'required',
+            'z1' => 'required',
+            'z2' => 'required',
+        ]);
+
+        $matriz = $datos->getMatriz();
+
+        if(!$matriz){
+            return response()->json(['error' => 'La matriz no ha sido configurada'], 500);
+        }
+
+        $values = $request->only('x1', 'x2', 'y1', 'y2', 'z1', 'z2');
+
+        if($values['x2']-1 < $values['x1']-1 || $values['y2']-1 < $values['y1']-1 || $values['z2']-1 < $values['z1']-1){
+            return response()->json(['error' => 'Un rango minimo es menor al maximo'], 422);
+        }
+
+        if(!$this->comprobarTests($matriz)){
+            return response()->json(['success' => 'Tests finalizados'], 500);
+        };
+
+        return response()->json(['resultado' => $matriz->query($values['x1']-1, $values['y1']-1, $values['z1']-1, $values['x2']-1, $values['y2']-1, $values['z2']-1)]);
+    }
 
 }
