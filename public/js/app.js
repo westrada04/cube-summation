@@ -37,7 +37,7 @@
                 numeroMatriz: vm.data.cubo.numeroMatriz
             }
 
-            $.post("/cube-summation/public/configurar",request)
+            $.post("configurar",request)
             	.then(function(data) {
                     alert("Configurado Exitosamente");
             	}, function(error){
@@ -78,7 +78,7 @@
                     if (comandos.length !== 7) {
                         return alert("Comando QUERY mal formado");
                     }
-                    $.post("/consultar", {
+                    $.post("consultar", {
                         x1: comandos[1],
                         y1: comandos[2],
                         z1: comandos[3],

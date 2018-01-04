@@ -10,7 +10,7 @@ namespace App;
 
 class Matriz{
     private $numeroComandos;
-    private $numeroMatriz
+    private $numeroMatriz;
     private $matriz;
 
     function __construct($numeroMatriz, $numeroComandos){

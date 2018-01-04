@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Datos;
+use App\Matriz;
 use Illuminate\Http\Request;
 
 class CuboController extends Controller
@@ -24,6 +26,38 @@ class CuboController extends Controller
         $datos->setAcciones(0);
 
         return response()->json(['success' => 'true']);
+    }
+    
+     public function actualizar(Request $request){
+        $datos = new Datos();
+
+        $this->validate($request, [
+            'x' => 'required|integer',
+            'y' => 'required|integer',
+            'z' => 'required|integer',
+            'value' => 'required|integer',
+        ]);
+
+        $matriz = $datos->getMatriz();
+        return response()->json(['error' => $matriz], 500);
+        if (!$matriz) {
+            return response()->json(['error' => 'La matriz no ha sido configurada'], 500);
+        }
+
+        $input = $request->only('x', 'y', 'z', 'value');
+
+        if ($input['x'] > $matriz->getNumeroMatriz() || $input['y'] > $matriz->getNumeroMatriz() || $input['z']> $matriz->getNumeroMatriz()) {
+            return response()->json(['error' => 'los Valores exceden el tamaño de la matriz'], 422);
+        }
+
+        if (!$this->comprobarTests($matriz)) {
+            return response()->json(['error' => 'Tests finalizados'], 500);
+        };
+
+        $matriz->actualizarValor($input['x'] - 1, $input['y'] - 1, $input['z'] - 1, $input['value']);
+
+        return response()->json(['success' => true]);
 
     }
+
 }
